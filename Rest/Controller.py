@@ -16,7 +16,9 @@ class Controller(QWidget):
 
 
      def reset(self):
-        print("reset")
+        self.myForm.lineEdit.clear()
+        self.myForm.lineEdit_2.clear()
+        self.myForm.ergebnis.clear()
 
      def submit(self):
 
@@ -29,7 +31,12 @@ class Controller(QWidget):
                 "sensor": "false",
                 "language":"de"}
          res = requests.get(url, params)
-         root = ElementTree.fromstring(res.content)
+
+         duration=""
+
+         root  = ElementTree.parse(res.content)
+         for child in root.iter('duration'):
+            duration += child.text + "<br>"
 
          for child in root.iter('html_instructions'):
             anweisung += child.text + "<br>"
