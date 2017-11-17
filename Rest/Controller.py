@@ -33,15 +33,21 @@ class Controller(QWidget):
          res = requests.get(url, params)
 
          duration=""
+         distance=""
 
-         root  = ElementTree.parse(res.content)
+         root  = ElementTree.fromstring(res.content)
          for child in root.iter('duration'):
-            duration += child.text + "<br>"
+            duration = "Ihre Fahrtzeit beträgt <b>" + child.find("text").text
+
+         for child in root.iter('distance'):
+            destination = "</b> auf einer Länge von <b>" + child.find("text").text + "</b><br>"
+
+         print(duration)
 
          for child in root.iter('html_instructions'):
             anweisung += child.text + "<br>"
 
-         self.myForm.ergebnis.setHtml(str(anweisung))
+         self.myForm.ergebnis.setHtml(duration+destination+str(anweisung))
 
 
 
