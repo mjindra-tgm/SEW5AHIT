@@ -1,0 +1,92 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'start.ui'
+#
+# Created: Mon Dec  5 18:54:18 2016
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
+#
+# WARNING! All changes made in this file will be lost!
+import socket
+from PySide import QtCore, QtGui
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(389, 295)
+        self.gridLayout = QtGui.QGridLayout(Form)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setWeight(75)
+        font.setBold(True)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_2 = QtGui.QLabel(Form)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout.addWidget(self.label_2)
+        self.sPort = QtGui.QLineEdit(Form)
+        self.sPort.setObjectName("sPort")
+        self.sPort.setText("12345")
+        self.horizontalLayout.addWidget(self.sPort)
+        self.sStart = QtGui.QPushButton(Form)
+        self.sStart.setObjectName("sStart")
+        self.horizontalLayout.addWidget(self.sStart)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.label_4 = QtGui.QLabel(Form)
+        font = QtGui.QFont()
+        font.setWeight(75)
+        font.setBold(True)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout.addWidget(self.label_4)
+        self.horizontalLayout_4 = QtGui.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.label_3 = QtGui.QLabel(Form)
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout_4.addWidget(self.label_3)
+        self.cIP = QtGui.QLineEdit(Form)
+        self.cIP.setObjectName("cIP")
+        self.cIP.setText("localhost")
+        self.horizontalLayout_4.addWidget(self.cIP)
+        self.label_5 = QtGui.QLabel(Form)
+        self.label_5.setObjectName("label_5")
+        self.horizontalLayout_4.addWidget(self.label_5)
+        self.cName = QtGui.QLineEdit(Form)
+        self.cName.setObjectName("cName")
+        self.cName.setText(socket.gethostname())
+        self.horizontalLayout_4.addWidget(self.cName)
+        self.verticalLayout.addLayout(self.horizontalLayout_4)
+        self.horizontalLayout_5 = QtGui.QHBoxLayout()
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.label_6 = QtGui.QLabel(Form)
+        self.label_6.setObjectName("label_6")
+        self.horizontalLayout_5.addWidget(self.label_6)
+        self.cPort = QtGui.QLineEdit(Form)
+        self.cPort.setObjectName("cPort")
+        self.horizontalLayout_5.addWidget(self.cPort)
+        self.cStart = QtGui.QPushButton(Form)
+        self.cStart.setObjectName("cStart")
+        self.horizontalLayout_5.addWidget(self.cStart)
+        self.verticalLayout.addLayout(self.horizontalLayout_5)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Form", "Server:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Form", "Port:", None, QtGui.QApplication.UnicodeUTF8))
+        self.sStart.setText(QtGui.QApplication.translate("Form", "Start", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Form", "Client:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("Form", "IP:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("Form", "Chatname:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_6.setText(QtGui.QApplication.translate("Form", "Port", None, QtGui.QApplication.UnicodeUTF8))
+        self.cStart.setText(QtGui.QApplication.translate("Form", "Start", None, QtGui.QApplication.UnicodeUTF8))
+        self.cPort.setText(QtGui.QApplication.translate("Form", "12345", None, QtGui.QApplication.UnicodeUTF8))
+
