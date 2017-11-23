@@ -11,7 +11,8 @@ public abstract class Decorator implements SocketIf{
 	public void write(String message) {
 	}
 	
-	public void read() {		
+	public String read() {
+		return null;		
 	}
 	
 }
