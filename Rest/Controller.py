@@ -8,19 +8,31 @@ from xml.etree import ElementTree
 
 
 class Controller(QWidget):
+     """
+     Der Controller der Verbindung zu dem Model(Rest) und dem View Teil des MVC'S aufbaut
+     """
 
      def __init__(self, parent=None):
+         """
+         Der Konstruktor
+         """
          super().__init__(parent)
          self.myForm = View.Ui_Form()
          self.myForm.setupUi(self)
 
 
      def reset(self):
+        """
+        Diese Methode stellt die urpsrüngliche GUI ohne Input/Output wieder her.
+        """
         self.myForm.lineEdit.clear()
         self.myForm.lineEdit_2.clear()
         self.myForm.ergebnis.clear()
 
      def submit(self):
+         """
+         Diese Methode nimmt den Input der View entgegen und gibt ihn an das Model(Rest Service, Google Maps Directions API) weiter. Der Output kommt wieder zurück in die View
+         """
 
          anweisung=""
          duration=""
@@ -34,20 +46,34 @@ class Controller(QWidget):
 
          duration=""
          distance=""
+         start_address=""
+         end_address = ""
 
          root  = ElementTree.fromstring(res.content)
+         print(res.content)
+         error=""
+
+         for child in root.iter('status'):
+            if child.text == "NOT_FOUND" or child.text == "ZERO_RESULTS":
+                error = "<b>Der Abfahrt-/Ankunftsort ist nicht vorhanden</b>"
+
+         for child in root.iter('start_address'):
+            start_address += "Ihre <b>Fahrtzeit</b> von <b>" + child.text
+
+         for child in root.iter('end_address'):
+            end_address += "</b> bis  <b>" + child.text
+
          for child in root.iter('duration'):
-            duration = "Ihre Fahrtzeit beträgt <b>" + child.find("text").text
+            duration = "</b> beträgt <b>" + child.find("text").text
 
          for child in root.iter('distance'):
-            destination = "</b> auf einer Länge von <b>" + child.find("text").text + "</b><br>"
+            distance = "</b> auf einer <b>Länge</b> von <b>" + child.find("text").text + "</b><br>"
 
-         print(duration)
 
          for child in root.iter('html_instructions'):
             anweisung += child.text + "<br>"
 
-         self.myForm.ergebnis.setHtml(duration+destination+str(anweisung))
+         self.myForm.ergebnis.setHtml(error+start_address+end_address+duration+distance+str(anweisung))
 
 
 

@@ -9,6 +9,9 @@
 
 from PySide import QtCore, QtGui
 
+"""
+Das ist die GUI
+"""
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
