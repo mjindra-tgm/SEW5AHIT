@@ -35,10 +35,12 @@ public class ConcreteServer implements SocketIf{
 			e1.printStackTrace();
 		}
 		String message = null;
-		try {
-			message = in.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
+		while(message == null){
+			try {
+				message = in.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return message;
 	}
