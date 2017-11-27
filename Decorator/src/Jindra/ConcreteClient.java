@@ -15,10 +15,8 @@ public class ConcreteClient implements SocketIf{
 		try {
 			client = new Socket(hostName,portNumber);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
