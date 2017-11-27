@@ -50,7 +50,6 @@ class Controller(QWidget):
          end_address = ""
 
          root  = ElementTree.fromstring(res.content)
-         print(res.content)
          error=""
 
          for child in root.iter('status'):

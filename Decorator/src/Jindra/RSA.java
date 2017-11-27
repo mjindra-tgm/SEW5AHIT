@@ -1,7 +1,7 @@
 package Jindra;
 
-import java.awt.RenderingHints.Key;
 import java.security.InvalidKeyException;
+
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -12,6 +12,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+
 public class RSA extends Decorator{
 
    private PrivateKey myPrivateKey;

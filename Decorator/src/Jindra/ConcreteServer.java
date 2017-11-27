@@ -24,6 +24,7 @@ public class ConcreteServer implements SocketIf{
 			e.printStackTrace();
 		}
 		out.println(message);
+		
 	}
 	
 
@@ -50,8 +51,19 @@ public class ConcreteServer implements SocketIf{
 		super();
 		server = new ServerSocket(port);
 		this.port = port;
-		while(true) {
-			client = server.accept();
+		client = server.accept();
+		
+		try {
+			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		while(true){
+			try {
+				System.out.println(in.readLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
