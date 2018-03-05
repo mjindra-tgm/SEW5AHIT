@@ -6,17 +6,35 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
-public class ConcreteServer implements SocketIf{
+public class ConcreteServer extends Thread implements SocketIf {
 	private Socket client;
 	private ServerSocket server;
 	private int port;
 	private BufferedReader in;
 	private PrintWriter out;
 	
+	/**
+	 * Der konkrete Server
+	 * @author Michael Jindra
+	 * @version 25-01-2018
+	 */
+	public ConcreteServer(int port) throws IOException {
+		super();
+		server = new ServerSocket(port);
+		this.port = port;
+		client = server.accept();
+		
+
+	}
 	
 
-	@Override
+	/**
+	 * Standard Decorator Methode write
+	 * @param message zu sendende Nachricht
+	 * @since 25-01-2018
+	 */
 	public void write(String message) {
 		try {
 			out = new PrintWriter(client.getOutputStream(), true);
@@ -28,43 +46,41 @@ public class ConcreteServer implements SocketIf{
 	}
 	
 
-	@Override
+	/**
+	 * Standard Decorator Methode read
+	 * @return message vom Socket
+	 * @since 25-01-2018
+	 */
 	public String read() {
 		try {
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		String message = null;
-		while(message == null){
-			try {
-				message = in.readLine();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		String message=null;
+		try {
+			message=in.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return message;
 	}
 
-
-	public ConcreteServer(int port) throws IOException {
-		super();
-		server = new ServerSocket(port);
-		this.port = port;
-		client = server.accept();
-		
+	/**
+	 * Main für Server
+	 * @since 25-01-2018
+	 */
+	public static void main(String[] args) {
+		int port = 8090; 
+		SocketIf server = null;	
 		try {
-			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			server = new Caesar(new ConcreteServer(port),2);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		while(true){
-			try {
-				System.out.println(in.readLine());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
+		server.write("test");
+		server.read();
 	}
+
 }

@@ -35,7 +35,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		client1 = new ConcreteClient("localhost", port);
+		client1 = new ConcreteClient("127.0.0.1", port);
 		
 		client1.write("Hello");
 	}

@@ -1,0 +1,4 @@
+Socket[addr=/127.0.0.1,port=62123,localport=12345]: !add 5 4, Credits: 10
+Socket[addr=/127.0.0.1,port=62123,localport=12345]: !sub 4 3, Credits: 9
+Socket[addr=/127.0.0.1,port=62123,localport=12345]: !buy 2, Credits: 8
+Socket[addr=/127.0.0.1,port=62123,localport=12345]: !exit, Credits: 10

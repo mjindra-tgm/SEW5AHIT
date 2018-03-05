@@ -19,19 +19,28 @@ public class RSA extends Decorator{
    private PublicKey myPublicKey;
    private PublicKey hisPublicKey;
 
-
+   /**
+    * Return den generierten public key
+    * @since 25-01-2018
+    * @return PublicKey
+    */
    public PublicKey getMyPublicKey() {
 	   return myPublicKey;
    }
 
 
+   /**
+    * Übernimmt den PublicKey, den der Client/Server vorher bekommen haben muss.
+    * @since 25-01-2018
+    * @param hisPublicKey
+    */
 	public void setHisPublicKey(PublicKey hisPublicKey) {
 	this.hisPublicKey = hisPublicKey;
 }
 
 
 
-
+	
 	RSA(SocketIf inner, PublicKey hisPublicKey) {
 	   super(inner);
 	   this.hisPublicKey=hisPublicKey;
@@ -64,6 +73,10 @@ public class RSA extends Decorator{
 		}
 
 
+	/**
+	 * Standard Decorator Methode read
+	 * @since 25-01-2018
+	 */
 	public String read() {
 	    Cipher cipher = null;
 	    String msg = null;
@@ -89,22 +102,23 @@ public class RSA extends Decorator{
        return msg;
    }
 
+	/**
+	 * Standard Decorator Methode write
+	 * @since 25-01-2018
+	 */
    public void write(String msg) {
        
 	    Cipher cipher = null;
 		try {
 			cipher = Cipher.getInstance("RSA");
 		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (NoSuchPaddingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}  
 	    try {
 			cipher.init(Cipher.ENCRYPT_MODE, hisPublicKey);
 		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    
